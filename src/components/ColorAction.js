@@ -9,18 +9,19 @@ export const ColorAction = () => {
         <div>
             <button
                 onClick={() => setBtnColor(newBtnColor)}
-                style={{ background: btnColor }}
+                style={{ background: disabled ? "grey" : btnColor }}
                 disabled = {disabled}
             >
                 Change to {newBtnColor}
             </button>
             <input 
                 type="checkbox"
-                id="enable-button-checkbox"
+                id="disable-button-checkbox"
                 defaultChecked={disabled}
                 aria-checked={disabled}
                 onChange={({ target }) => setDisabled(target.checked)}
             />
+            <label htmlFor="disable-button-checkbox">Disable Button</label>
         </div>
     )
 }

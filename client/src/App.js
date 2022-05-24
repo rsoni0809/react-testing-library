@@ -1,11 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
 import { ColorAction } from "./components/ColorAction";
+import Form from "./pages/summary/Form";
 
 function App() {
   return (
     <div className="App">
-     <ColorAction />
+      <ColorAction />
+      <Form />
     </div>
   );
 }

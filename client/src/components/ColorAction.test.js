@@ -1,5 +1,5 @@
-import { render, screen, fireEvent  } from "@testing-library/react";
-import { ColorAction } from "./ColorAction";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { ColorAction, replaceCamelWithSpace } from "./ColorAction";
 
 test("Button has correct initial Color", () => {
     render(<ColorAction />);
@@ -18,13 +18,13 @@ test("Button has color change on click", () => {
     expect(newButtonColor).toHaveStyle({ backgroundColor: 'blue' });
 
     // expect new text to be Change to red
-    expect(newButtonColor.textContent).toBe("Change to red");
+    expect(newButtonColor).toHaveTextContent("Change to red");
      fireEvent.click(newButtonColor);
     // expect new color to be blue
     expect(newButtonColor).toHaveStyle({ backgroundColor: 'red' });
 
     // expect new text to be Change to red
-    expect(newButtonColor.textContent).toBe("Change to blue");
+    expect(newButtonColor).toHaveTextContent("Change to blue");
 });
  
 
@@ -47,7 +47,7 @@ test("Button disabled on Checkbox checked", () => {
     fireEvent.click(colorButton);
     fireEvent.click(checkbox);
 
-    expect(colorButton.textContent).toBe("Change to red");
+    expect(colorButton).toHaveTextContent("Change to red");
     expect(colorButton).toHaveStyle({ background: "grey" });
     fireEvent.click(checkbox);
      expect(colorButton).toHaveStyle({ background: "blue" });
@@ -55,8 +55,23 @@ test("Button disabled on Checkbox checked", () => {
     expect(colorButton).toHaveStyle({ background: "grey" });
 });
 
-
-
-    test("Button has text change on click", () => {
-    
+describe("Create spaces for multiple function to deal with string camelcase", () => {
+    test("Works for when no inner capital letter", () => {
+        expect(replaceCamelWithSpace("Brown")).toBe("Brown");
     });
+
+    test("Works for when one inner capital letter", () => {
+        expect(replaceCamelWithSpace("BrownColor")).toBe("Brown Color");
+    });
+
+    test("Works for when multiple capital letter", () => {
+        expect(replaceCamelWithSpace("ChocolateIsBrownColor")).toBe("Chocolate Is Brown Color");
+    })
+    
+})
+
+
+
+
+
+  

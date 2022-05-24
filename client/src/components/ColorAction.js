@@ -1,5 +1,8 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 
+export function replaceCamelWithSpace(colorName) {
+    return colorName.replace(/\B([A-Z])\B/g, " $1");
+}
 export const ColorAction = () => {
     const [btnColor, setBtnColor] = useState("red");
     const [disabled, setDisabled] = useState(false);
